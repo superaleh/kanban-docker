@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./postgres/.env
+
+  django:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    volumes:
+      - django_static_volume:/usr/src/app/static
+    expose:
+      - 8000
+    env_file:
+      - ./back/.env
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - db
+
+  react:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    volumes:
+      - react_static_volume:/usr/src/app/build/static
+    expose:
+      - 3000
+    command: npm run start
+    depends_on:
+      - django
+
+  nginx:
+    restart: always
+    build: ./nginx
+    volumes:
+      - django_static_volume:/usr/src/app/django_files/static
+      - react_static_volume:/usr/src/app/react_files/static
+    ports:
+      - 80:80
+    depends_on:
+      - react
+
+volumes:
+  postgres_data:
+  django_static_volume:
+  react_static_volume:
