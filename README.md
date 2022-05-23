@@ -11,8 +11,8 @@ Open
 [http://127.0.0.1](http://127.0.0.1)
 
 
-![login](https://github.com/superaleh/kanban-docker/tree/master/images/login.png)
+![login](https://raw.githubusercontent.com/superaleh/kanban-docker/master/images/login.png)
 
-![reg](https://github.com/superaleh/kanban-docker/tree/master/images/reg.png)
+![reg](https://raw.githubusercontent.com/superaleh/kanban-docker/master/images/reg.png)
 
-![kanban](https://github.com/superaleh/kanban-docker/tree/master/images/kanban.png)
+![kanban](https://raw.githubusercontent.com/superaleh/kanban-docker/master/images/kanban.png)
